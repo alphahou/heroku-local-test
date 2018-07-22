@@ -3,14 +3,64 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+		header {
+			margin:0 auto;
+			text-align: center;
+		}
+		.inputs {
+			width: 100%;
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: row;
+		}
+		.input {
+			flex: 1;
+			display: inline-block;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		#presentation {
+			margin: 50px auto;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+	</style>
 </head>
 <body>
-<select>
+<header><h1>draw-algorithm</h1></header>
+<article></article>
+<hr>
+<div class="inputs">
+<div class="input">
+<label for="selection">choose your algorithm: </label>
+<select id="selection">
   <option value="findKth">find-kth</option>
   <option value="heapSort">heap-sort</option>
-  <option value="mergeBottom">mergeBottom</option>
-  <option value="audi">Audi</option>
+  <option value="mergeBottom">merge-bottom</option>
+  <option value="mergeTop">merge-top</option>
+  <option value="priorityQueue">priority-queue</option>
+  <option value="quick3ways">quick-3ways</option>
+  <option value="quickSort">quick-sort</option>
+  <option value="shellSort">shell's-sort</option>
+  <option value="bst">binary-search-tree</option>
+  <option value="rbt">red-black-tree</option>
 </select>
+
+</div>
+<div class="input">
+	<label for="len">length of your array</label>
+	<input type="range" id="len" min="1" max="50" step="1">
+	<span id="value"></span>
+</div>
+</div>
 <div id="presentation"></div>
 <script>
 /******/ (function(modules) { // webpackBootstrap
@@ -137,6 +187,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dra
 
 /***/ }),
 
+/***/ "./src/helper/merge.js":
+/*!*****************************!*\
+  !*** ./src/helper/merge.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _draw_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./draw.js */ \"./src/helper/draw.js\");\n\n\nfunction merge(array, lo, mid, hi, copy) {\n    let y = mid + 1,\n        x = lo;\n    for (let i = lo; i <= hi; i++) {\n        copy[i] = array[i];\n    }\n    for (let i = lo; i <= hi; i++) {\n        if (x > mid) {\n            array[i] = copy[y++];\n        } else if (y > hi) {\n            array[i] = copy[x++];\n        } else if (copy[x] > copy[y]) {\n            array[i] = copy[y++];\n        } else {\n            array[i] = copy[x++];\n        }\n        Object(_draw_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, i);\n    }\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (merge);\n\n//# sourceURL=webpack:///./src/helper/merge.js?");
+
+/***/ }),
+
 /***/ "./src/helper/randArray.js":
 /*!*********************************!*\
   !*** ./src/helper/randArray.js ***!
@@ -157,7 +219,31 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dra
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sort_find_kth_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sort/find-kth.js */ \"./src/sort/find-kth.js\");\n/* harmony import */ var _sort_heap_sort_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sort/heap-sort.js */ \"./src/sort/heap-sort.js\");\n/* harmony import */ var _sort_mergeBottom_sort_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sort/mergeBottom-sort.js */ \"./src/sort/mergeBottom-sort.js\");\n/* harmony import */ var _helper_clearStage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helper/clearStage.js */ \"./src/helper/clearStage.js\");\n\n\n\n\nconst select = document.querySelector('select');\nconst method = select.value;\nconst methods = { findKth: _sort_find_kth_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"], heapSort: _sort_heap_sort_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"], mergeBottom: _sort_mergeBottom_sort_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"] };\n\nconst switchMethod = e => {\n\tObject(_helper_clearStage_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\n\tmethods[e.target.value](10, 5);\n};\nselect.addEventListener('change', switchMethod);\nmethods[method](10, 5);\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sort_find_kth_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sort/find-kth.js */ \"./src/sort/find-kth.js\");\n/* harmony import */ var _sort_heap_sort_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sort/heap-sort.js */ \"./src/sort/heap-sort.js\");\n/* harmony import */ var _sort_mergeBottom_sort_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sort/mergeBottom-sort.js */ \"./src/sort/mergeBottom-sort.js\");\n/* harmony import */ var _sort_mergeTop_sort_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sort/mergeTop-sort.js */ \"./src/sort/mergeTop-sort.js\");\n/* harmony import */ var _sort_priority_queue_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sort/priority-queue.js */ \"./src/sort/priority-queue.js\");\n/* harmony import */ var _sort_quick_3ways_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sort/quick-3ways.js */ \"./src/sort/quick-3ways.js\");\n/* harmony import */ var _sort_quick_sort_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./sort/quick-sort.js */ \"./src/sort/quick-sort.js\");\n/* harmony import */ var _sort_shell_s_sort_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./sort/shell's-sort.js */ \"./src/sort/shell's-sort.js\");\n/* harmony import */ var _search_bst_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./search/bst.js */ \"./src/search/bst.js\");\n/* harmony import */ var _search_red_black_tree_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./search/red-black-tree.js */ \"./src/search/red-black-tree.js\");\n/* harmony import */ var _helper_clearStage_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./helper/clearStage.js */ \"./src/helper/clearStage.js\");\n\n\n\n\n\n\n\n\n\n\n\n\nconst select = document.querySelector('select');\nlet len = 20;\nconst value = document.querySelector('#value');\nconst lenInput = document.querySelector('#len');\nconst method = select.value;\nconst methods = {\n    findKth: _sort_find_kth_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n    heapSort: _sort_heap_sort_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    mergeBottom: _sort_mergeBottom_sort_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n    mergeTop: _sort_mergeTop_sort_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n    priorityQueue: _sort_priority_queue_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"],\n    quick3ways: _sort_quick_3ways_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"],\n    quickSort: _sort_quick_sort_js__WEBPACK_IMPORTED_MODULE_6__[\"default\"],\n    shellSort: _sort_shell_s_sort_js__WEBPACK_IMPORTED_MODULE_7__[\"default\"],\n    bst: _search_bst_js__WEBPACK_IMPORTED_MODULE_8__[\"default\"],\n    rbt: _search_red_black_tree_js__WEBPACK_IMPORTED_MODULE_9__[\"default\"]\n};\n\nconst switchMethod = e => {\n    Object(_helper_clearStage_js__WEBPACK_IMPORTED_MODULE_10__[\"default\"])();\n    methods[e.target.value](len, 5);\n};\n\nlenInput.addEventListener('input', e => {\n    Object(_helper_clearStage_js__WEBPACK_IMPORTED_MODULE_10__[\"default\"])();\n    len = lenInput.value;\n    value.innerHTML = len;\n    methods[select.value](len, 5);\n});\nselect.addEventListener('change', switchMethod);\nmethods[method](len, 5);\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/search/bst.js":
+/*!***************************!*\
+  !*** ./src/search/bst.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n\nfunction drawNode(ctx, node, x, y, a, b) {\n    let p = x > a ? 7 : -7;\n    ctx.beginPath();\n    ctx.moveTo(a + p, b + 7);\n    ctx.lineTo(x - p, y - 7);\n    ctx.stroke();\n    ctx.beginPath();\n    ctx.arc(x, y, 10, 0, 2 * Math.PI);\n    ctx.stroke();\n    ctx.font = \"10px serif\";\n    ctx.fillText(node.key, x - 5, y + 3);\n}\nfunction draw1(ctx, node, x, y, a, b, n) {\n    if (node == null) {\n        return;\n    }\n    let cell = 20;\n    if (n > 0) {\n        cell = n * cell;\n    }\n    n--;\n    draw1(ctx, node.left, x - cell, y + cell, x, y, n);\n    drawNode(ctx, node, x, y, a, b);\n    draw1(ctx, node.right, x + cell, y + cell, x, y, n);\n}\nfunction draw(bst) {\n    let presentation = document.querySelector('#presentation'),\n        canvas = document.createElement('canvas'),\n        ctx = canvas.getContext('2d'),\n        n = bst.size(bst.root),\n        h = bst.height();\n    canvas.setAttribute('height', '' + (h * 40 + 100));\n    canvas.setAttribute('width', '' + 1000);\n    canvas.style.display = 'block';\n    canvas.style.margin = '100 auto';\n    draw1(ctx, bst.root, 500, 10, 500 + 13, 10 - 13, 4);\n    presentation.appendChild(canvas);\n}\nclass Node {\n    constructor(key, val) {\n        this.key = key;\n        this.val = val;\n        this.N = 1;\n        this.left = null;\n        this.right = null;\n    }\n}\nclass BST {\n    constructor(node) {\n        this.root = node;\n    }\n    size(n) {\n        return n == null ? 0 : n.N;\n    }\n    get(key) {\n        return this.search(key, this.root);\n    }\n    search(key, node) {\n        // if(node==null){\n        // \treturn null\n        // }\n        // if(n.key>key){\n        // \tthis.search(key,n.left)\n        // }\n        // else if(n.key<key){\n        // \tthis.search(key,n.right)\n        // }\n        // else {\n        // \treturn n.val\n        // }\n        while (node != null) {\n            if (node.key > key) {\n                node = node.left;\n            } else if (node.key < key) {\n                node = node.right;\n            } else {\n                return node.val;\n            }\n        }\n        return null;\n    }\n    put(key, val) {\n        this.root = this.putt(this.root, key, val);\n    }\n    putt(node, key, val) {\n        if (node == null) {\n            return new Node(key, val); //没有该节点\n        }\n        if (key > node.key) {\n            node.right = this.putt(node.right, key, val);\n        } else if (key < node.key) {\n            node.left = this.putt(node.left, key, val);\n        } else {\n            node.val = val; //有该节点，更新\n        }\n        node.N = this.size(node.left) + this.size(node.right) + 1; //返回后会执行这段代码，依次从新添加节点的根节点开始增加N\n        return node;\n    }\n    min() {\n        return this.min1(this.root);\n    }\n    min1(node) {\n        if (node.left != null) {\n            return this.min1(node.left);\n        }\n        return node;\n    }\n    select(k) {\n        return this.select1(this.root, k).key;\n    }\n    select1(node, k) {\n        if (node == null) {\n            return null;\n        }\n        var t = this.size(node.left);\n        if (k < t) {\n            return this.select1(node.left, k);\n        } else if (k > t) {\n            return this.select1(node.right, k - t - 1);\n        } else {\n            return node;\n        }\n    }\n    rank(key) {\n        return this.rank1(this.root, key);\n    }\n    rank1(node, key) {\n        if (node == null) {\n            return null;\n        }\n        if (node.key > key) {\n            return rank1(node.left, key);\n        } else if (node.key < key) {\n            return this.size(node.left) + 1 + this.rank1(node.right, key);\n        } else {\n            return this.size(node.left);\n        }\n    }\n    floor(key) {\n        let f = this.floor1(this.root, key);\n        return f ? f.key : null;\n    }\n    floor1(node, key) {\n        if (node == null) {\n            return null;\n        }\n        let k = node.key;\n        if (key < k) {\n            return this.floor1(node.left, key);\n        } else if (key == k) {\n            return node;\n        } else {\n            let right = this.floor1(node.right, key);\n            return right || node;\n        }\n    }\n    height() {\n        return this.height1(this.root);\n    }\n    height1(node) {\n        if (node == null) {\n            return null;\n        }\n        let left = this.height1(node.left);\n        let right = this.height1(node.right);\n        let h = left > right ? left + 1 : right + 1;\n        return h;\n    }\n    delMin() {\n        this.root = this.delMin1(this.root);\n    }\n    delMin1(node) {\n        if (node.left == null) {\n            return node.right;\n        }\n        node.left = this.delMin1(node.left);\n        node.N--;\n        return node;\n    }\n    delete(key) {\n        this.root = this.delete1(this.root, key);\n    }\n    delete1(node, key) {\n        if (node == null) {\n            return null;\n        }\n        if (node.key > key) {\n            node.left = this.delete1(node.left, key);\n        } else if (node.key < key) {\n            node.right = this.delete1(node.right, key);\n        } else {\n            if (node.left == null) {\n                return node.right;\n            }\n            if (node.right == null) {\n                return node.left;\n            }\n            let x = node;\n            node = this.min1(x.right);\n            node.right = this.delMin1(x.right);\n            node.left = x.left;\n        }\n        node.N = this.size(node.right) + this.size(node.left) + 1;\n        return node;\n    }\n    print() {\n        this.print1(this.root);\n    }\n    print1(node) {\n        if (node == null) {\n            return;\n        }\n        this.print1(node.left);\n        console.log(node.key);\n        this.print1(node.right);\n    }\n\n    keys(lo, hi) {\n        let arr = [];\n        this.keys1(this.root, arr, lo, hi);\n        return arr;\n    }\n    keys1(node, arr, lo, hi) {\n        if (node == null) {\n            return;\n        }\n        let key = node.key;\n        if (key < lo) {\n            this.keys1(node.right, arr, lo, hi);\n        }\n        if (hi >= key && key >= lo) {\n            arr.push(node.key);\n        }\n        if (key > hi) {\n            this.keys1(node.left, arr, lo, hi);\n        }\n    }\n}\nfunction createRandomBst(len) {\n    let root = new Node(Math.floor(Math.random() * 100), 'd');\n    let bst = new BST(root);\n    for (let i = 0; i < len; i++) {\n        bst.put(Math.floor(Math.random() * 100), 'a');\n    }\n    return bst;\n}\nfunction main(len) {\n    let bst = createRandomBst(len - 1);\n    draw(bst);\n    bst.print();\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/search/bst.js?");
+
+/***/ }),
+
+/***/ "./src/search/red-black-tree.js":
+/*!**************************************!*\
+  !*** ./src/search/red-black-tree.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n\nfunction drawNode(ctx, node, x, y, a, b) {\n    let p = x > a ? 7 : -7;\n    ctx.beginPath();\n    if (node.red) {\n        ctx.strokeStyle = \"#FF0000\";\n    }\n    ctx.moveTo(a + p, b + 7);\n    ctx.lineTo(x - p, y - 7);\n    ctx.stroke();\n    ctx.closePath();\n    ctx.beginPath();\n    ctx.strokeStyle = \"black\";\n    ctx.arc(x, y, 10, 0, 2 * Math.PI);\n    ctx.stroke();\n    ctx.fillStyle = 'black';\n    ctx.font = \"10px serif\";\n    ctx.fillText(node.key, x - 5, y + 3);\n    ctx.closePath();\n}\nfunction draw1(ctx, node, x, y, a, b, n) {\n    if (node == null) {\n        return;\n    }\n    let cell = 20;\n    let height = 20;\n    if (n > 0) {\n        cell = n * cell;\n    }\n    n--;\n    draw1(ctx, node.left, x - cell, y + height, x, y, n);\n    drawNode(ctx, node, x, y, a, b);\n    draw1(ctx, node.right, x + cell, y + cell, x, y, n);\n}\nfunction draw(bst) {\n    let presentation = document.querySelector('#presentation'),\n        canvas = document.createElement('canvas'),\n        ctx = canvas.getContext('2d'),\n        n = bst.size(bst.root),\n        h = bst.height();\n    canvas.setAttribute('height', '' + (h * 40 + 100));\n    canvas.setAttribute('width', '' + 1000);\n    canvas.style.display = 'block';\n    canvas.style.margin = '100 auto';\n    draw1(ctx, bst.root, 500, 10, 500 + 13, 10 - 13, 4);\n    presentation.appendChild(canvas);\n}\nclass Node {\n    constructor(key, val, red) {\n        this.key = key;\n        this.val = val;\n        this.N = 1;\n        this.left = null;\n        this.right = null;\n        this.red = red;\n    }\n\n}\nclass RBT {\n    constructor(node) {\n        this.root = node;\n    }\n    size(n) {\n        return n == null ? 0 : n.N;\n    }\n    get(key) {\n        return this.search(key, this.root);\n    }\n    search(key, node) {\n        // if(node==null){\n        // \treturn null\n        // }\n        // if(n.key>key){\n        // \tthis.search(key,n.left)\n        // }\n        // else if(n.key<key){\n        // \tthis.search(key,n.right)\n        // }\n        // else {\n        // \treturn n.val\n        // }\n        while (node != null) {\n            if (node.key > key) {\n                node = node.left;\n            } else if (node.key < key) {\n                node = node.right;\n            } else {\n                return node.val;\n            }\n        }\n        return null;\n    }\n    put(key, val) {\n        this.root = this.put1(this.root, key, val);\n        this.root.red = false;\n    }\n    put1(node, key, val) {\n        if (node == null) {\n            return new Node(key, val, true); //没有该节点\n        }\n        if (key > node.key) {\n            node.right = this.put1(node.right, key, val);\n        } else if (key < node.key) {\n            node.left = this.put1(node.left, key, val);\n        } else {\n            node.val = val; //有该节点，更新\n        }\n        if (this.isRed(node.right) && !this.isRed(node.left)) {\n            node = this.rotateLeft(node);\n        }\n        if (this.isRed(node.left) && this.isRed(node.left.left)) {\n            node = this.rotateRight(node);\n        }\n        if (this.isRed(node.left) && this.isRed(node.right)) {\n            this.flipColors(node);\n        }\n        node.N = this.size(node.left) + this.size(node.right) + 1; //返回后会执行这段代码，依次从新添加节点的根节点开始增加N\n        return node;\n    }\n    flipColors(node) {\n        node.left.red = false;\n        node.right.red = false;\n        node.red = true;\n    }\n    rotateRight(node) {\n        let x = node.left;\n        node.left = x.right;\n        x.right = node;\n        x.red = node.red;\n        node.red = true;\n        x.N = node.N;\n        node.N = this.size(node.left) + this.size(node.right) + 1;\n        return x;\n    }\n    rotateLeft(node) {\n        let x = node.right;\n        node.right = x.left;\n        x.left = node;\n        x.red = node.red;\n        node.red = true;\n        x.N = node.N;\n        node.N = this.size(node.left) + this.size(node.right) + 1;\n        return x;\n    }\n    isRed(node) {\n        if (node == null) {\n            return false;\n        }\n        return node.red;\n    }\n    min() {\n        return this.min1(this.root);\n    }\n    min1(node) {\n        if (node.left != null) {\n            return this.min1(node.left);\n        }\n        return node;\n    }\n    select(k) {\n        return this.select1(this.root, k).key;\n    }\n    select1(node, k) {\n        if (node == null) {\n            return null;\n        }\n        let t = this.size(node.left);\n        if (k < t) {\n            return this.select1(node.left, k);\n        } else if (k > t) {\n            return this.select1(node.right, k - t - 1);\n        } else {\n            return node;\n        }\n    }\n    rank(key) {\n        return this.rank1(this.root, key);\n    }\n    rank1(node, key) {\n        if (node == null) {\n            return null;\n        }\n        if (node.key > key) {\n            return rank1(node.left, key);\n        } else if (node.key < key) {\n            return this.size(node.left) + 1 + this.rank1(node.right, key);\n        } else {\n            return this.size(node.left);\n        }\n    }\n    floor(key) {\n        let f = this.floor1(this.root, key);\n        return f ? f.key : null;\n    }\n    floor1(node, key) {\n        if (node == null) {\n            return null;\n        }\n        let k = node.key;\n        if (key < k) {\n            return this.floor1(node.left, key);\n        } else if (key == k) {\n            return node;\n        } else {\n            let right = this.floor1(node.right, key);\n            return right || node;\n        }\n    }\n    height() {\n        return this.height1(this.root);\n    }\n    height1(node) {\n        if (node == null) {\n            return null;\n        }\n        let left = this.height1(node.left);\n        let right = this.height1(node.right);\n        let h = left > right ? left + 1 : right + 1;\n        return h;\n    }\n    delMin() {\n        this.root = this.delMin1(this.root);\n    }\n    delMin1(node) {\n        if (node.left == null) {\n            return node.right;\n        }\n        node.left = this.delMin1(node.left);\n        node.N--;\n        return node;\n    }\n    delete(key) {\n        this.root = this.delete1(this.root, key);\n    }\n    delete1(node, key) {\n        if (node == null) {\n            return null;\n        }\n        if (node.key > key) {\n            node.left = this.delete1(node.left, key);\n        } else if (node.key < key) {\n            node.right = this.delete1(node.right, key);\n        } else {\n            if (node.left == null) {\n                return node.right;\n            }\n            if (node.right == null) {\n                return node.left;\n            }\n            let x = node;\n            node = this.min1(x.right);\n            node.right = this.delMin1(x.right);\n            node.left = x.left;\n        }\n        node.N = this.size(node.right) + this.size(node.left) + 1;\n        return node;\n    }\n    print() {\n        this.print1(this.root);\n    }\n    print1(node) {\n        if (node == null) {\n            return;\n        }\n        this.print1(node.left);\n        console.log(node.key);\n        this.print1(node.right);\n    }\n\n    keys(lo, hi) {\n        let arr = [];\n        this.keys1(this.root, arr, lo, hi);\n        return arr;\n    }\n    keys1(node, arr, lo, hi) {\n        if (node == null) {\n            return;\n        }\n        let key = node.key;\n        if (key < lo) {\n            this.keys1(node.right, arr, lo, hi);\n        }\n        if (hi >= key && key >= lo) {\n            arr.push(node.key);\n        }\n        if (key > hi) {\n            this.keys1(node.left, arr, lo, hi);\n        }\n    }\n}\nfunction createRandomBst(len) {\n    let root = new Node(Math.floor(Math.random() * 100), 'd', false);\n    let rbt = new RBT(root);\n    for (let i = 0; i < len; i++) {\n        rbt.put(Math.floor(Math.random() * 100), 'a');\n    }\n    return rbt;\n}\nfunction main(len) {\n    let rbt = createRandomBst(len);\n    draw(rbt);\n    rbt.print();\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/search/red-black-tree.js?");
 
 /***/ }),
 
@@ -185,6 +271,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hel
 
 /***/ }),
 
+/***/ "./src/sort/insertSort.js":
+/*!********************************!*\
+  !*** ./src/sort/insertSort.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n\n\n// This insert sort is dedicated for merge-sort\nfunction insertSort(array, lo, hi) {\n    let l = array.length,\n        temp = 0;\n    for (let i = lo; i <= hi; i++) {\n        temp = array[i];\n        // the reason to use temp is that we never\n        // insert untill it is bigger than some value\n        // before it.\n        for (let j = i; j > lo; j--) {\n            // Here, we are looking for the first ordered\n            if (temp < array[j - 1]) {\n                array[j] = array[j - 1];\n                Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, j);\n                if (j == 1) {\n                    array[0] = temp;\n                }\n            } else if (temp > array[j - 1]) {\n                array[j] = temp;\n                Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, i);\n                break;\n            }\n        }\n    }\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (insertSort);\n\n//# sourceURL=webpack:///./src/sort/insertSort.js?");
+
+/***/ }),
+
 /***/ "./src/sort/mergeBottom-sort.js":
 /*!**************************************!*\
   !*** ./src/sort/mergeBottom-sort.js ***!
@@ -193,7 +291,67 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hel
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n\n\n\n\nfunction sort(array) {\n    function merge(array, lo, mid, hi, copy) {\n        let y = mid + 1,\n            x = lo;\n        for (let i = lo; i <= hi; i++) {\n            copy[i] = array[i];\n        }\n        for (let i = lo; i <= hi; i++) {\n            if (x > mid) {\n                array[i] = copy[y++];\n            } else if (y > hi) {\n                array[i] = copy[x++];\n            } else if (copy[x] > copy[y]) {\n                array[i] = copy[y++];\n            } else {\n                array[i] = copy[x++];\n            }\n            Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(array, i);\n        }\n    }\n    function insertSort(array, lo, hi) {\n        let l = array.length,\n            temp = 0;\n        for (let i = lo; i <= hi; i++) {\n            temp = array[i];\n            for (let j = i; j > lo; j--) {\n                if (temp < array[j - 1]) {\n                    array[j] = array[j - 1];\n                    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(array, j);\n                    if (j == 1) {\n                        array[j - 1] = temp;\n                    }\n                } else if (temp > array[j - 1]) {\n                    array[j] = temp;\n                    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(array, i);\n                    break;\n                }\n            }\n        }\n    }\n    let l = array.length,\n        copy = [],\n        smallInsert = 6,\n        group = Math.floor(l / smallInsert),\n        equal = l % smallInsert,\n        start = 0,\n        end = 0;\n    for (let i = 0; i < group; i++) {\n        start = smallInsert * i;\n        end = start + smallInsert - 1;\n        insertSort(array, start, end);\n    }\n    if (equal) {\n        // if equal, then there is some number not included in group\n        insertSort(array, group * smallInsert, l - 1);\n    }\n    for (let sz = smallInsert; sz < l; sz += sz) {\n        for (let lo = 0; lo < l - sz; lo += sz + sz) {\n            if (array[lo + sz - 1] > array[lo + sz]) {\n                // If this is true, then we need to merge, otherwise, it is already ordered.\n                merge(array, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, l - 1), copy);\n            }\n        }\n    }\n}\n\nfunction main(len) {\n    let arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(len);\n    sort(arr, 0, len - 1);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/mergeBottom-sort.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n/* harmony import */ var _insertSort_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./insertSort.js */ \"./src/sort/insertSort.js\");\n/* harmony import */ var _helper_merge_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helper/merge.js */ \"./src/helper/merge.js\");\n\n\n\n\n\n/*  \r\nThis algorithm will first divide the array into\r\nsmall groups by given scale, and then use insert\r\nsort to sort them. Since insert sort is very efficient\r\nwhen the array is small, we need to keep divided groups\r\nsmall. Then we merge them.\r\n*/\n\nfunction sort(array) {\n\n    let l = array.length,\n        smallInsert = 6,\n        group = Math.floor(l / smallInsert),\n        equal = l % smallInsert,\n        start = 0,\n        end = 0;\n    for (let i = 0; i < group; i++) {\n        start = smallInsert * i;\n        end = start + smallInsert - 1;\n        Object(_insertSort_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(array, start, end);\n    }\n    if (equal) {\n        // if equal, then there is some number not included in group\n        Object(_insertSort_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(array, group * smallInsert, l - 1);\n    }\n    for (let sz = smallInsert; sz < l; sz += sz) {\n        for (let lo = 0; lo < l - sz; lo += sz + sz) {\n            if (array[lo + sz - 1] > array[lo + sz]) {\n                // If this is true, then we need to merge, otherwise, it is already ordered.\n                Object(_helper_merge_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(array, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, l - 1), []);\n            }\n        }\n    }\n}\n\nfunction main(len) {\n    let arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(len);\n    console.log(len);\n    sort(arr, 0, len - 1);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/mergeBottom-sort.js?");
+
+/***/ }),
+
+/***/ "./src/sort/mergeTop-sort.js":
+/*!***********************************!*\
+  !*** ./src/sort/mergeTop-sort.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n/* harmony import */ var _insertSort_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./insertSort.js */ \"./src/sort/insertSort.js\");\n/* harmony import */ var _helper_merge_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helper/merge.js */ \"./src/helper/merge.js\");\n\n\n\n\n\n\n// There is some bug with merge method\nfunction sort(array, lo, hi) {\n    if (hi - lo <= 8) {\n        Object(_insertSort_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(array, lo, hi);\n        return;\n    }\n    let mid = Math.floor(lo + (hi - lo) / 2);\n    sort(array, lo, mid);\n    sort(array, mid + 1, hi);\n    if (array[mid] <= array[mid + 1]) {\n        return;\n    }\n    Object(_helper_merge_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(array, lo, mid, hi, []);\n}\n\nfunction main(len) {\n    let arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(len);\n    sort(arr, 0, len - 1);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/mergeTop-sort.js?");
+
+/***/ }),
+
+/***/ "./src/sort/priority-queue.js":
+/*!************************************!*\
+  !*** ./src/sort/priority-queue.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n\n\n\n\nclass MaxPQ {\n    constructor(max) {\n        this.maxLen = max;\n        this.queue = [];\n        this.n = 0;\n    }\n    insert(v) {\n        this.queue[++this.n] = v;\n        this.swim(this.n);\n    }\n    delMax() {\n        var max = this.queue[1];\n        this.exch(1, this.n--);\n        this.queue[this.n + 1] = null;\n        this.sink(1);\n        return max;\n    }\n    isEmpty() {\n        return this.n == 0;\n    }\n    size() {\n        return this.n;\n    }\n    exch(a, b) {\n        Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(this.queue, a, b);\n        var temp = this.queue[a];\n        this.queue[a] = this.queue[b];\n        this.queue[b] = temp;\n    }\n    swim(n) {\n        var x;\n        while (n > 1 && this.queue[n] > this.queue[x = Math.floor(n / 2)]) {\n            this.exch(n, x);\n            n = x;\n        }\n    }\n    sink(n) {\n        while (2 * n <= this.n) {\n            var j = 2 * n;\n            if (j < this.n && this.queue[j] < this.queue[j + 1]) {\n                j++;\n            }\n            if (this.queue[j] < this.queue[n]) {\n                break;\n            }\n            this.exch(j, n);\n            n = j;\n        }\n    }\n}\n\nfunction main(len) {\n    let arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(len),\n        max = 5,\n        maxQue = [],\n        pq = new MaxPQ(max);\n    while (len) {\n        pq.insert(arr[--len]);\n        if (pq.size() > max) {\n            pq.delMax();\n        }\n    }\n    while (!pq.isEmpty()) {\n        maxQue.push(pq.delMax());\n    }\n    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(maxQue);\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/priority-queue.js?");
+
+/***/ }),
+
+/***/ "./src/sort/quick-3ways.js":
+/*!*********************************!*\
+  !*** ./src/sort/quick-3ways.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n\n\n\n\nfunction sort(array, lo, hi) {\n    if (hi <= lo) {\n        return;\n    }\n    let i = lo + 1,\n        lt = lo,\n        v = array[lo],\n        //这里的v最后会成为中间的重复段\n    gt = hi;\n    while (i <= gt) {\n        let current = array[i];\n        if (current < v) {\n            Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, i++, lt++); //这里相当于把中间重复段右移，i加入左边\n        } else if (current > v) {\n            Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, i, gt--);\n        } else {\n            i++;\n        }\n    }\n    sort(array, lo, lt - 1);\n    sort(array, gt + 1, hi);\n}\n\nfunction main(len) {\n    let arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(len);\n    sort(arr, 0, len - 1);\n    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(arr);\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/quick-3ways.js?");
+
+/***/ }),
+
+/***/ "./src/sort/quick-sort.js":
+/*!********************************!*\
+  !*** ./src/sort/quick-sort.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n\n\n\nfunction largest(array) {\n    let l = array.length,\n        temp = array[0],\n        index = 0;\n    for (let i = 1; i < l; i++) {\n        if (array[i] > temp) {\n            temp = array[i];\n            index = i;\n        }\n        if (index != l - 1) {\n            Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, index, l - 1);\n        }\n    }\n}\nfunction partition(array, lo, hi) {\n    let i = lo,\n        j = hi + 1,\n        v = array[lo];\n    while (true) {\n        while (array[++i] < v) {}\n        // Since we pre deal with the array, we do not need to worry that i is larger than len\n        while (array[--j] > v) {}\n        if (i >= j) {\n            break;\n        }\n        Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, i, j);\n    }\n    Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, j, lo);\n    return j;\n}\nfunction sort(array, lo, hi) {\n    if (hi <= lo) {\n        //小于某个数值时可以使用插入排序\n        return;\n    }\n    let j = partition(array, lo, hi);\n    sort(array, lo, j - 1);\n    sort(array, j + 1, hi);\n}\n\nfunction main(len) {\n    let arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(len);\n    largest(arr);\n    // pre deal with the array, so we do not need to inspect if out of boundary\n    sort(arr, 0, len - 1);\n    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(arr);\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/quick-sort.js?");
+
+/***/ }),
+
+/***/ "./src/sort/shell's-sort.js":
+/*!**********************************!*\
+  !*** ./src/sort/shell's-sort.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n\n\n\nfunction sort(array) {\n    let h = 1,\n        l = array.length;\n\n    while (h < l / 3) {\n        h = h * 3 + 1;\n    }\n    while (h >= 1) {\n        for (let i = h; i < l; i++) {\n            for (let j = i; j >= h && array[j] < array[j - h]; j -= h) {\n                Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, j, j - h);\n            }\n        }\n        h = Math.floor(h / 3);\n    }\n}\nfunction main(len) {\n    var arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(len);\n    sort(arr, 0, len - 1);\n    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(arr);\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/shell's-sort.js?");
 
 /***/ })
 

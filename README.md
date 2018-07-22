@@ -27,7 +27,7 @@ All demoes and my introduction can be easily accessed by this [link](https://fat
 
 Here is a catalog:
 
-* [blog](https://fathomless-sea-85350.herokuapp.com/blog)
+* [blog](https://fathomless-sea-85350.herokuapp.com/draw-algorithm)
 
 
 
