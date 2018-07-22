@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<select>
+  <option value="findKth">find-kth</option>
+  <option value="heapSort">heap-sort</option>
+  <option value="mergeBottom">mergeBottom</option>
+  <option value="audi">Audi</option>
+</select>
+<div id="presentation"></div>
+<script>
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/helper/clearStage.js":
+/*!**********************************!*\
+  !*** ./src/helper/clearStage.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _draw_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./draw.js */ \"./src/helper/draw.js\");\n\nconst clearStage = () => {\n\tObject(_draw_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(0, 0, 0, true);\n\tlet pre = document.querySelector('#presentation');\n\tdocument.body.removeChild(pre);\n\tpre = document.createElement('div');\n\tpre.id = 'presentation';\n\tdocument.body.appendChild(pre);\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (clearStage);\n\n//# sourceURL=webpack:///./src/helper/clearStage.js?");
+
+/***/ }),
+
+/***/ "./src/helper/draw.js":
+/*!****************************!*\
+  !*** ./src/helper/draw.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nlet cnt = 0;\n\nfunction draw(array, x = -1, y = -1, clear = false) {\n    if (clear) {\n        cnt = 0;\n        return;\n    }\n    cnt++;\n    let presentation = document.querySelector('#presentation'),\n        canvas = document.createElement('canvas'),\n        count = document.createElement('div'),\n        ctx = canvas.getContext('2d'),\n        l = array.length,\n        gap = 10,\n        w = 7;\n    canvas.setAttribute('height', '200');\n    canvas.setAttribute('width', '' + l * 10);\n    canvas.style.display = 'block';\n    canvas.style.margin = 'auto';\n    count.innerText = cnt;\n    count.style.textAlign = 'center';\n    for (let i = 0; i < l; i++) {\n        if (i != x && i != y) {\n            ctx.fillStyle = 'pink';\n        } else {\n            ctx.fillStyle = 'black';\n        }\n        ctx.fillRect(0 + gap * i, 200, w, -array[i] * 100);\n    }\n    presentation.appendChild(canvas);\n    presentation.appendChild(count);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (draw);\n\n//# sourceURL=webpack:///./src/helper/draw.js?");
+
+/***/ }),
+
+/***/ "./src/helper/exch.js":
+/*!****************************!*\
+  !*** ./src/helper/exch.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _draw_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./draw.js */ \"./src/helper/draw.js\");\n\nfunction exch(array, a, b) {\n\t\t\tvar temp = array[a];\n\t\t\tarray[a] = array[b];\n\t\t\tarray[b] = temp;\n\t\t\tObject(_draw_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, a, b);\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (exch);\n\n//# sourceURL=webpack:///./src/helper/exch.js?");
+
+/***/ }),
+
+/***/ "./src/helper/randArray.js":
+/*!*********************************!*\
+  !*** ./src/helper/randArray.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _draw__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./draw */ \"./src/helper/draw.js\");\n\nfunction createRandArray(length) {\n\tlet array = [];\n\twhile (length > 0) {\n\t\tarray.push(Math.random());\n\t\tlength--;\n\t}\n\tObject(_draw__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array);\n\treturn array;\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (createRandArray);\n\n//# sourceURL=webpack:///./src/helper/randArray.js?");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sort_find_kth_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sort/find-kth.js */ \"./src/sort/find-kth.js\");\n/* harmony import */ var _sort_heap_sort_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sort/heap-sort.js */ \"./src/sort/heap-sort.js\");\n/* harmony import */ var _sort_mergeBottom_sort_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sort/mergeBottom-sort.js */ \"./src/sort/mergeBottom-sort.js\");\n/* harmony import */ var _helper_clearStage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helper/clearStage.js */ \"./src/helper/clearStage.js\");\n\n\n\n\nconst select = document.querySelector('select');\nconst method = select.value;\nconst methods = { findKth: _sort_find_kth_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"], heapSort: _sort_heap_sort_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"], mergeBottom: _sort_mergeBottom_sort_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"] };\n\nconst switchMethod = e => {\n\tObject(_helper_clearStage_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\n\tmethods[e.target.value](10, 5);\n};\nselect.addEventListener('change', switchMethod);\nmethods[method](10, 5);\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/sort/find-kth.js":
+/*!******************************!*\
+  !*** ./src/sort/find-kth.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n\n\n\n// This function takes an array and k as inputs,\n// it will return the kth smallest value of the array.\n// Through draw method, we can observe how many times\n// it needs to find the kth value.\n\nconst findKth = (array, k) => {\n    k--;\n    if (k > array.length) {\n        return null;\n    }\n    function partition(array, lo, hi) {\n        var i = lo,\n            j = hi + 1,\n            v = array[lo];\n        while (true) {\n            while (array[++i] < v) {}\n            while (array[--j] > v) {}\n            if (i >= j) {\n                break;\n            }\n            Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, i, j);\n        }\n        Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, j, lo);\n        return j;\n    }\n    var lo = 0,\n        hi = array.length - 1;\n    while (hi > lo) {\n        var j = partition(array, lo, hi);\n        if (j == k) {\n            return array[k];\n        }\n        if (j < k) {\n            lo = j + 1;\n        }\n        if (j > k) {\n            hi = j - 1;\n        }\n    }\n    return array[k];\n};\nfunction main(len, k) {\n    let arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(len);\n    return findKth(arr, k);\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/find-kth.js?");
+
+/***/ }),
+
+/***/ "./src/sort/heap-sort.js":
+/*!*******************************!*\
+  !*** ./src/sort/heap-sort.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n\n\n\n\nfunction sink(array, i, len) {\n\n    while (2 * i + 1 <= len) {\n        var j = 2 * i + 1;\n        if (j < len && array[j] < array[j + 1]) {\n            //因为j成为子堆中较大的那个\n            j++;\n        }\n        if (array[j] < array[i]) {\n            //所以这里只需要判断i是否大于j\n            break;\n        }\n        Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, i, j);\n        i = j;\n    }\n}\n\nfunction sort(array) {\n    var l = array.length - 1;\n    for (var i = Math.floor(l / 2); i > -1; i--) {\n        sink(array, i, l);\n    }\n    while (l > 0) {\n        Object(_helper_exch_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(array, 0, l--);\n        sink(array, 0, l);\n    }\n}\n\nfunction main(len) {\n    var arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(len);\n    sort(arr);\n    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(arr);\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/heap-sort.js?");
+
+/***/ }),
+
+/***/ "./src/sort/mergeBottom-sort.js":
+/*!**************************************!*\
+  !*** ./src/sort/mergeBottom-sort.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_exch_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/exch.js */ \"./src/helper/exch.js\");\n/* harmony import */ var _helper_draw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/draw.js */ \"./src/helper/draw.js\");\n/* harmony import */ var _helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helper/randArray.js */ \"./src/helper/randArray.js\");\n\n\n\n\nfunction sort(array) {\n    function merge(array, lo, mid, hi, copy) {\n        let y = mid + 1,\n            x = lo;\n        for (let i = lo; i <= hi; i++) {\n            copy[i] = array[i];\n        }\n        for (let i = lo; i <= hi; i++) {\n            if (x > mid) {\n                array[i] = copy[y++];\n            } else if (y > hi) {\n                array[i] = copy[x++];\n            } else if (copy[x] > copy[y]) {\n                array[i] = copy[y++];\n            } else {\n                array[i] = copy[x++];\n            }\n            Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(array, i);\n        }\n    }\n    function insertSort(array, lo, hi) {\n        let l = array.length,\n            temp = 0;\n        for (let i = lo; i <= hi; i++) {\n            temp = array[i];\n            for (let j = i; j > lo; j--) {\n                if (temp < array[j - 1]) {\n                    array[j] = array[j - 1];\n                    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(array, j);\n                    if (j == 1) {\n                        array[j - 1] = temp;\n                    }\n                } else if (temp > array[j - 1]) {\n                    array[j] = temp;\n                    Object(_helper_draw_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(array, i);\n                    break;\n                }\n            }\n        }\n    }\n    let l = array.length,\n        copy = [],\n        smallInsert = 6,\n        group = Math.floor(l / smallInsert),\n        equal = l % smallInsert,\n        start = 0,\n        end = 0;\n    for (let i = 0; i < group; i++) {\n        start = smallInsert * i;\n        end = start + smallInsert - 1;\n        insertSort(array, start, end);\n    }\n    if (equal) {\n        // if equal, then there is some number not included in group\n        insertSort(array, group * smallInsert, l - 1);\n    }\n    for (let sz = smallInsert; sz < l; sz += sz) {\n        for (let lo = 0; lo < l - sz; lo += sz + sz) {\n            if (array[lo + sz - 1] > array[lo + sz]) {\n                // If this is true, then we need to merge, otherwise, it is already ordered.\n                merge(array, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, l - 1), copy);\n            }\n        }\n    }\n}\n\nfunction main(len) {\n    let arr = Object(_helper_randArray_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(len);\n    sort(arr, 0, len - 1);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (main);\n\n//# sourceURL=webpack:///./src/sort/mergeBottom-sort.js?");
+
+/***/ })
+
+/******/ });
+</script></body>
+</html>
