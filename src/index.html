@@ -4,64 +4,158 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style>
+		
 		*{
 			margin:0 auto;
 			text-align: center;
 			padding: 0;
+
+			text-decoration: none;
 		}
-		h1 {
-			color: pink;
+		a {
+			color:black;
+		}
+		a :hover {
+			color: skyblue;
+		}
+		body {
+			display: flex;
+			flex-direction: row;
+			height: 100vh;
+			width: 100%;
+			overflow-y: hidden;
 		}
 		header {
-			margin: 20px;
+			min-width: 12rem;
+			margin: 2.5rem 0px;
 			text-align: center;
+			height: 100vh;
 		}
 		nav {
+			font-family: Arial;	
 			text-transform: capitalize;
-			margin: 20px;
+			margin: 30px;
 			display: flex;
-			background: #ff000022;
-
+			flex-direction: column;
+			flex: auto;
+			background: white;
+			border-bottom: 0.05rem solid grey;
 		}
-		nav>div{
-			border: 1px solid black;
+		nav>a>div{
+			padding: 2rem 0px;
+			border-bottom: none;
 			flex: 1;
-			text-align: center;
-			height: 30px;
+			justify-content: center;
+			height: 2rem;
 			display: flex;
 			align-items: center;
 		}
-		nav>div>a {
-			
-			text-decoration: none;
-			display: inline-block;
+		nav>a {
+			flex: 1;
 			width: 100%;
 			color: black;
-			font-size: 22px;
+			font-size: 1.5rem;
 			font-weight: 500;
-			height: 100%;
+			transition: all 1s;
+			border: 0.05rem solid grey;	
 		}
-		nav>div>a:hover {
+		nav>a:hover {
 			color: white;
-			background: #00000099;
+			background: #00000030;
+			border: 0.05rem solid blue;
 		} 
+		header>figure {
+			margin: 40px;
+		}
+		#avatar {
+			width: 100px;
+			border-radius: 50%;
+		}
+		#avatar > figcaption {
+			font-family: Arial;
+			color: grey;
+		}
+
+		main {	
+			flex:1;	
+			display: flex;
+			flex-direction: column;	
+			/*overflow-y: hidden;*/
+		}
+		main>section{
+			margin-top: 2rem;
+			width: 100%;
+			flex: auto;
+			overflow-y: scroll;
+			font-size: 1.2rem;
+			text-align: left;
+		}
+		main>footer {
+			/*flex: 0 0 12rem;*/
+		}
+		p{
+			text-align: left;
+			margin-left: 5rem;
+			margin-top: 3rem;
+		}
+		.sections {
+			height: 100vh;
+			min-width: 30rem;
+			padding-left: 3rem;
+			padding-right: 3rem;
+		}
+		.inline {
+			margin-top: 0.5rem;
+			text-indent: 2rem;
+		}
 	</style>
 </head>
 <body>
-	<header><h1>Welcome!</h1></header>
+	<header><figure><img id="avatar" src="../public/avatar.jpg" alt="Chenyi Hou"><figcaption >Chenyi Hou</figcaption></figure>
+
 	<nav>
-		<div><a href="">projects</a></div>
-		<div><a href="">about</a></div>
-		<div><a href="">blogs</a></div>
-		<div><a href="">service</a></div>
-		<div><a href="">contact</a></div>
+		<a href="#about">
+			<div>about</div>
+		</a>
+		<a href="#projects">
+			<div>projects</div>
+		</a>
+
+		<a href="#contact">
+			<div>contact</div>
+		</a>
 		
 	</nav>
+	</header>
+	
 	<main>
-		<p>
-			<a href="https://fathomless-sea-85350.herokuapp.com/draw-algorithm">drawAlgorithm</a>
+		<section>
+			<div class="sections">
+		<h1 id="about">About</h1>
+		<br>
+		<hr>
+		<p><strong>•Introduction: </strong><br><p class="inline">I am currently BSc student majoring Computer Science at Carleton University. I received bachelor degree of Economics from Shanghai University at 2016.</p></p>
+		<p><strong>•Working Experience: </strong><br>   	<p class="inline">I has been working as an audit for a year in
+		an accounting firm in Shanghai China during 2016.09-2017.09.  </p>
+		<p class="inline">
+From 2018.09-2018.12, I worked as a teaching assistant for COMP 1405, which is an introductory course.
+	</p></p>
+		<p><strong>•Experience in CS: </strong><br><p class="inline">I start to learn things related to front-end from 2017.09, and at 2018.05 I start to learn Computer Science at Carleton University.</p></p>
+		<p><strong>•Programing skills: </strong><br><p class="inline"><em>Programing Language: </em>JavaSript, Java, Python, C/C++;</p><p class="inline"><em>Tools & Technologies: </em>HTML5, CSS, React, Express.js, MongoDB;</p></p>
+		</div>
 
+		<div class="sections">
+			<h1 id="projects">Projects</h1>
+			<br>
+			<hr>
+		<p><a href=""><strong>•Draw Algorithm: </strong></a>
+			<p class="inline">Draw different sort algorithms and red-black tree. It could automatically generate n(your choice) numbers and sort them step by step. Helping new algorithm learner build a intuitive understanding. It is complished by vanilla JavaScript and new Html5 element Canvas.</p>
 		</p>
+		</div>
+		</section>
+		<footer>
+	footer
+</footer>
 	</main>
 
 </body>
