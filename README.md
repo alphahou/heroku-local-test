@@ -1,7 +1,7 @@
 ### Projects
 
 ---
-
+Files in scr directory is just a part of my side projects.
 All demoes and my introduction can be easily accessed by this [Index](https://fathomless-sea-85350.herokuapp.com/) (not exhausted).
 
 Here is a catalog:
