@@ -22,7 +22,7 @@ The server is implemented by heroku & express.
 
 #### Catalog
 
-All demoes and my introduction can be easily accessed by this [Index](https://fathomless-sea-85350.herokuapp.com/).
+All demoes and my introduction can be easily accessed by this [Index](https://fathomless-sea-85350.herokuapp.com/) (not exhausted).
 
 Here is a catalog:
 
